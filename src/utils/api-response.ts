@@ -12,7 +12,7 @@ import { StatusCodes } from '../types/enum';
  */
 export const sendSuccessResponse = (
   res: Response,
-  statusCode: StatusCodes = StatusCodes.INTERNAL_SERVER_ERROR,
+  statusCode: StatusCodes = StatusCodes.OK,
   message: string,
   data?: any,
   meta?: any

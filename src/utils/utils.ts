@@ -50,3 +50,10 @@ export const compareDataWithHash = async (data: string, hash: string): Promise<b
   return await bcrypt.compare(data, hash);
 }
 
+/**
+ * Log Error to the console and deployment environment
+ */
+export const logError = (message: string, error: any): void => {
+  console.error(`❌ ${message}: ${error.message ?? error}`);
+  console.error(error?.stack);
+}

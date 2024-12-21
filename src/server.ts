@@ -1,20 +1,16 @@
-import express from "express";
-import cors from "cors";
-import unauthenticatedRoutes from "./routes/unauthenticated.routes";
-import { connectMongoDB } from "./config/db.config";
 import dotenv from "dotenv";
 dotenv.config();
+import { connectMongoDB } from "./config/db.config";
+import app from "./app";
 
 const PORT = process.env.PORT || 8000;
 
-const app = express();
+const startServer = async () => {
+    await connectMongoDB();
+    app.listen(PORT, async () => {
+      console.log(`🚀 Server is running on http://localhost:${PORT}`);
+    });
+}
 
-app.use(express.json());
-app.use(cors());
+startServer();
 
-app.use("/api/v1", unauthenticatedRoutes);
-
-app.listen(PORT, async () => {
-  await connectMongoDB();
-  console.log(`🚀 Server is running on http://localhost:${PORT}`);
-});
